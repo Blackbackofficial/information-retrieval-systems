@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"retrieval-systems/internal"
+	"retrieval-systems/internal/lab1"
 )
 
 func main() {
@@ -11,7 +11,7 @@ func main() {
 	fmt.Scanf("%d", &num)
 	switch num {
 	case 1:
-		internal.Lab1()
+		lab1.Lab1()
 	default:
 		fmt.Println("None selected")
 	}

@@ -1,8 +1,9 @@
-package internal
+package lab1
 
 import (
 	"fmt"
 	"math/rand"
+	"retrieval-systems/internal"
 	"time"
 )
 
@@ -113,14 +114,14 @@ func Lab1() {
 	ar20 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 	ar40 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 		21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40}
-	ranAr10 := randMass(10)
-	ranAr20 := randMass(20)
-	ranAr40 := randMass(40)
+	ranAr10 := internal.RandMass(10)
+	ranAr20 := internal.RandMass(20)
+	ranAr40 := internal.RandMass(40)
 
 	fmt.Println("------------ BubbleSort ------------ (count: 10)")
 	fmt.Println("_____SINGLE_____")
 	bubbleSort(ar10)
-	reverse(ar10)
+	internal.Reverse(ar10)
 	fmt.Println("_____REVERSE_____")
 	bubbleSort(ar10)
 	fmt.Println("_____RANDOM_____")
@@ -132,7 +133,7 @@ func Lab1() {
 	fmt.Println("------------ BubbleSort ------------ (count: 20)")
 	fmt.Println("_____SINGLE_____")
 	bubbleSort(ar20)
-	reverse(ar20)
+	internal.Reverse(ar20)
 	fmt.Println("_____REVERSE_____")
 	bubbleSort(ar20)
 	fmt.Println("_____RANDOM_____")
@@ -143,7 +144,7 @@ func Lab1() {
 	fmt.Println("------------ BubbleSort ------------ (count: 40)")
 	fmt.Println("_____SINGLE_____")
 	bubbleSort(ar40)
-	reverse(ar40)
+	internal.Reverse(ar40)
 	fmt.Println("_____REVERSE_____")
 	bubbleSort(ar40)
 	fmt.Println("_____RANDOM_____")
@@ -156,7 +157,7 @@ func Lab1() {
 	countPerm, countComp := quickSort(ar10, 0, len(ar10), 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
-	reverse(ar10)
+	internal.Reverse(ar10)
 	fmt.Println("_____REVERSE_____")
 	countPerm, countComp = quickSort(ar10, 0, len(ar10), 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
@@ -172,7 +173,7 @@ func Lab1() {
 	countPerm, countComp = quickSort(ar20, 0, len(ar20), 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
-	reverse(ar20)
+	internal.Reverse(ar20)
 	fmt.Println("_____REVERSE_____")
 	countPerm, countComp = quickSort(ar20, 0, len(ar20), 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
@@ -188,7 +189,7 @@ func Lab1() {
 	countPerm, countComp = quickSort(ar40, 0, len(ar40), 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
-	reverse(ar40)
+	internal.Reverse(ar40)
 	fmt.Println("_____REVERSE_____")
 	countPerm, countComp = quickSort(ar40, 0, len(ar40), 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
@@ -205,7 +206,7 @@ func Lab1() {
 	_, countPerm, countComp = mergeSort(ar10, 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
-	reverse(ar10)
+	internal.Reverse(ar10)
 	fmt.Println("_____REVERSE_____")
 	_, countPerm, countComp = mergeSort(ar10, 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
@@ -222,7 +223,7 @@ func Lab1() {
 	_, countPerm, countComp = mergeSort(ar20, 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
-	reverse(ar20)
+	internal.Reverse(ar20)
 	fmt.Println("_____REVERSE_____")
 	_, countPerm, countComp = mergeSort(ar20, 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
@@ -239,7 +240,7 @@ func Lab1() {
 	_, countPerm, countComp = mergeSort(ar40, 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
-	reverse(ar40)
+	internal.Reverse(ar40)
 	fmt.Println("_____REVERSE_____")
 	_, countPerm, countComp = mergeSort(ar40, 0, 0)
 	fmt.Printf("Permutations: %d\n", countPerm)
