@@ -1,7 +1,9 @@
 package lab3
 
-// Index returns the first index substr found in the s.
-func Index(s string, substr string) int {
+import "fmt"
+
+// FindIndex returns the first index substr found in the s.
+func FindIndex(s string, substr string) int {
 	d := CalculateSlideTable(substr)
 	return IndexWithTable(&d, s, substr)
 }
@@ -26,8 +28,7 @@ func IndexWithTable(d *[256]int, s string, substr string) int {
 	i := 0
 	for i+lSub-1 < ls {
 		j := lSub - 1
-		if j >= 0 && s[i+j] == substr[j] {
-			j--
+		for ; j >= 0 && s[i+j] == substr[j]; j-- {
 		}
 		if j < 0 {
 			return i
@@ -55,5 +56,12 @@ func CalculateSlideTable(substr string) [256]int {
 }
 
 func Lab3() {
-
+	src := `A cryptographic approach to secure information implies its transformation which enables it to be read
+only by the owner of the secret key. The reliability of a cryptographic method of securing data depends`
+	subStr := `approach to secure`
+	if pos := FindIndex(src, subStr); pos > -1 {
+		fmt.Println("Found in position: ", pos)
+	} else {
+		fmt.Printf("Not found: %s\n", subStr)
+	}
 }
