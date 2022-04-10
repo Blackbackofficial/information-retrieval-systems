@@ -16,18 +16,12 @@ func bubbleSort(ar []int) {
 			countComp++
 			if ar[i] > ar[j] {
 				countPerm++
-				swap(ar, i, j)
+				internal.Swap(ar, i, j)
 			}
 		}
 	}
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
-}
-
-func swap(ar []int, i, j int) {
-	tmp := ar[i]
-	ar[i] = ar[j]
-	ar[j] = tmp
 }
 
 // InsertionSort
