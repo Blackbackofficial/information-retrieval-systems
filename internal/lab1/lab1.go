@@ -30,6 +30,29 @@ func swap(ar []int, i, j int) {
 	ar[j] = tmp
 }
 
+// InsertionSort
+func insertionSort(ar []int) {
+	var countPerm int
+	var countComp int
+	for i := 1; i < len(ar); i++ {
+		x := ar[i]
+		j := i
+		countComp++
+		if j >= 1 && ar[j-1] > x {
+			for ; j >= 1 && ar[j-1] > x; j-- {
+				countPerm++
+				ar[j] = ar[j-1]
+			}
+		}
+		if ar[j] != ar[i] {
+			countPerm++
+			ar[j] = x
+		}
+	}
+	fmt.Printf("Permutations: %d\n", countPerm)
+	fmt.Printf("Сomparison: %d\n", countComp)
+}
+
 // QuickSort
 func quickSort(arr []int, begin, end, countPerm, countComp int) (int, int) {
 	if end-begin < 2 {
@@ -69,42 +92,6 @@ func pivot(arr []int, begin, end, countPerm, countComp int) (int, int, int) {
 	}
 	arr[begin] = temp
 	return begin, countPerm, countComp
-}
-
-// MergeSort
-func mergeSort(items []int, countPerm, countComp int) ([]int, int, int) {
-	if len(items) < 2 {
-		return items, countPerm, countComp
-	}
-	first, countPerm, countComp := mergeSort(items[:len(items)/2], countPerm, countComp)
-	second, countPerm, countComp := mergeSort(items[len(items)/2:], countPerm, countComp)
-	return merge(first, second, countPerm, countComp)
-}
-
-func merge(a []int, b []int, countPerm, countComp int) ([]int, int, int) {
-	var final []int
-	var i, j int
-	for i < len(a) && j < len(b) {
-		countComp++
-		if a[i] < b[j] {
-			final = append(final, a[i])
-			countPerm++
-			i++
-		} else {
-			final = append(final, b[j])
-			countPerm++
-			j++
-		}
-	}
-	for ; i < len(a); i++ {
-		final = append(final, a[i])
-		countPerm++
-	}
-	for ; j < len(b); j++ {
-		final = append(final, b[j])
-		countPerm++
-	}
-	return final, countPerm, countComp
 }
 
 // Lab1 Print output
@@ -200,54 +187,36 @@ func Lab1() {
 	fmt.Printf("Permutations: %d\n", countPerm)
 	fmt.Printf("Сomparison: %d\n", countComp)
 
-	fmt.Println("\n\n------------ MergeSort ------------ (count: 10)")
+	fmt.Println("\n\n------------ InsertionSort ------------ (count: 10)")
 	fmt.Println("_____SINGLE_____")
 	fmt.Println(ar10)
-	_, countPerm, countComp = mergeSort(ar10, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(ar10)
 	internal.Reverse(ar10)
 	fmt.Println("_____REVERSE_____")
-	_, countPerm, countComp = mergeSort(ar10, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(ar10)
 	fmt.Println("_____RANDOM_____")
 	copy(arr10, ranAr10)
-	_, countPerm, countComp = mergeSort(arr10, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(arr10)
 
-	fmt.Println("------------ MergeSort ------------ (count: 20)")
+	fmt.Println("------------ InsertionSort ------------ (count: 20)")
 	fmt.Println("_____SINGLE_____")
 	fmt.Println(ar20)
-	_, countPerm, countComp = mergeSort(ar20, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(ar20)
 	internal.Reverse(ar20)
 	fmt.Println("_____REVERSE_____")
-	_, countPerm, countComp = mergeSort(ar20, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(ar20)
 	fmt.Println("_____RANDOM_____")
 	copy(arr20, ranAr20)
-	_, countPerm, countComp = mergeSort(arr20, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(arr20)
 
-	fmt.Println("------------ MergeSort ------------ (count: 40)")
+	fmt.Println("------------ InsertionSort ------------ (count: 40)")
 	fmt.Println("_____SINGLE_____")
 	fmt.Println(ar40)
-	_, countPerm, countComp = mergeSort(ar40, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(ar40)
 	internal.Reverse(ar40)
 	fmt.Println("_____REVERSE_____")
-	_, countPerm, countComp = mergeSort(ar40, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(ar40)
 	fmt.Println("_____RANDOM_____")
 	copy(arr40, ranAr40)
-	_, countPerm, countComp = mergeSort(arr40, 0, 0)
-	fmt.Printf("Permutations: %d\n", countPerm)
-	fmt.Printf("Сomparison: %d\n", countComp)
+	insertionSort(arr40)
 }
