@@ -10,7 +10,7 @@ class Tape {
 public:
     vector<vector<int>> data;
 
-    Tape() {}
+    Tape() = default;
 
     void SetNewData(int data) {
         vector<int> new_data { data };
@@ -44,9 +44,9 @@ public:
     }
 
     friend ostream& operator<< (ostream& out,const Tape& tape) {
-        for(int i=0; i < tape.data.size(); ++i) {
-            for(int j=0; j < tape.data[i].size(); ++j) {
-                cout << tape.data[i][j] << " " << endl;
+        for(const auto & i : tape.data) {
+            for(int j : i) {
+                cout << j << " " << endl;
             }
             cout << endl;
         }
@@ -93,8 +93,9 @@ int main() {
     }
 
     //add tapes
+    tapes.reserve(NUM_OF_TAPES);
     for(int i = 0; i < NUM_OF_TAPES; ++i) {
-        tapes.push_back(Tape());
+        tapes.emplace_back();
     }
 
     int startTape = 0;
@@ -122,7 +123,7 @@ int main() {
     }
 
     //final merge
-    if(count_if(tapes.begin(),tapes.end(), [] (Tape tape) { return !tape.data.empty(); }) > 1) {
+    if(count_if(tapes.begin(),tapes.end(), [] (const Tape& tape) { return !tape.data.empty(); }) > 1) {
         int tape_to_merge = (startTape + NUM_OF_TAPES - 1) % NUM_OF_TAPES;
         for(int i = startTape; i < startTape + NUM_OF_TAPES - 1; ++i) {
             int selected_tape = i % NUM_OF_TAPES;
