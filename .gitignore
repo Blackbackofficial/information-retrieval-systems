@@ -16,3 +16,11 @@
 
 .idea/
 .cmake-build-debug/
+*.cmake
+CMakeCache.txt
+main
+Makefile
+CMakeFiles/
+*.bin
+*.c
+*.o
