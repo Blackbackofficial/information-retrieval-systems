@@ -20,4 +20,4 @@ make -C ./internal/lab2/Makefile
 ./internal/lab2/main
 ```
 
-*made in C++ due to the peculiarities of the language
+*made in C++ due to the peculiarities of the language (I just wanted to make my life difficult.)

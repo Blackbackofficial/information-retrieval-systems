@@ -23,7 +23,7 @@ void merge(int array[], int const left, int const mid, int const right) {
 
     auto indexOfSubArrayOne = 0, // Initial index of first sub-array
     indexOfSubArrayTwo = 0; // Initial index of second sub-array
-    int indexOfMergedArray = left; 
+    int indexOfMergedArray = left;
 
     while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
         if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
