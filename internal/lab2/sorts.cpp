@@ -23,9 +23,8 @@ void merge(int array[], int const left, int const mid, int const right) {
 
     auto indexOfSubArrayOne = 0, // Initial index of first sub-array
     indexOfSubArrayTwo = 0; // Initial index of second sub-array
-    int indexOfMergedArray = left; // Initial index of merged array
+    int indexOfMergedArray = left; 
 
-    // Merge the temp arrays back into array[left..right]
     while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
         if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
             array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
@@ -36,15 +35,13 @@ void merge(int array[], int const left, int const mid, int const right) {
         }
         indexOfMergedArray++;
     }
-    // Copy the remaining elements of
-    // left[], if there are any
+
     while (indexOfSubArrayOne < subArrayOne) {
         array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
         indexOfSubArrayOne++;
         indexOfMergedArray++;
     }
-    // Copy the remaining elements of
-    // right[], if there are any
+
     while (indexOfSubArrayTwo < subArrayTwo) {
         array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
         indexOfSubArrayTwo++;
@@ -148,7 +145,8 @@ vector<int> merge(vector<int> a, vector<int> b) {
 
 int main() {
     cout << "------------ Balanced MergeSort ------------ (count: 20)\n";
-    int arr[] = { 54, 26, 93, 17, 77, 31, 44, 55, 20, 40, 20, 55, 1, 7, 39, 11, 25, 19, 34, 10 };
+    int arr[] = { 54, 26, 93, 17, 77, 31, 44, 55, 20, 40, 20, 55, 1, 7,
+                  39, 11, 25, 19, 34, 10 };
     auto arr_size = sizeof(arr)/sizeof(arr[0]);
 
     cout << "Given array is \n";
@@ -192,8 +190,7 @@ int main() {
         int tape_to_merge = (startTape + NUM_OF_TAPES - 1) % NUM_OF_TAPES;
         for(int i = startTape; i < startTape + NUM_OF_TAPES - 1; ++i) {
             int selected_tape = i % NUM_OF_TAPES;
-            tapes[tape_to_merge].ChangeBack(merge(tapes[tape_to_merge].GetData(),
-                                                  tapes[selected_tape].Pop()));
+            tapes[tape_to_merge].ChangeBack(merge(tapes[tape_to_merge].GetData(),tapes[selected_tape].Pop()));
 
             cout << "Merge data from tape #" << selected_tape << " to tape #" << tape_to_merge << endl;
         }
