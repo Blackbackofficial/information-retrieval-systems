@@ -8,20 +8,20 @@ static int NUM_OF_TAPES = 4;
 
 class Tape {
 public:
-    vector<vector<int>> data;
+    vector<vector<int>> vData;
 
     Tape() = default;
 
     void SetNewData(int data) {
         vector<int> new_data { data };
-        this->data.push_back(new_data);
+        this->vData.push_back(new_data);
     }
 
     vector<int> Pop() {
         vector<int> tmp;
-        if (!data.empty()) {
-            tmp = data.back();
-            data.pop_back();
+        if (!vData.empty()) {
+            tmp = vData.back();
+            vData.pop_back();
         } else {
             tmp = vector<int>();
         }
@@ -29,22 +29,22 @@ public:
     }
 
     vector<int> GetData() {
-        if (!data.empty()) {
-            return data.back();
+        if (!vData.empty()) {
+            return vData.back();
         } else {
             return {};
         }
     }
 
     void ChangeBack(const vector<int>& new_vector) {
-        if(!data.empty()) {
-            data.pop_back();
+        if(!vData.empty()) {
+            vData.pop_back();
         }
-        data.push_back(new_vector);
+        vData.push_back(new_vector);
     }
 
     friend ostream& operator<< (ostream& out,const Tape& tape) {
-        for(const auto & i : tape.data) {
+        for(const auto & i : tape.vData) {
             for(int j : i) {
                 cout << j << " " << endl;
             }
@@ -73,7 +73,7 @@ vector<int> merge(vector<int> a, vector<int> b) {
                 result_vector.push_back(*j);
                 j = b.erase(j);
             }
-        };
+        }
     }
 
     result_vector.insert(result_vector.end(), a.begin(), a.end());
@@ -123,7 +123,7 @@ int main() {
     }
 
     //final merge
-    if(count_if(tapes.begin(),tapes.end(), [] (const Tape& tape) { return !tape.data.empty(); }) > 1) {
+    if(count_if(tapes.begin(),tapes.end(), [] (const Tape& tape) { return !tape.vData.empty(); }) > 1) {
         int tape_to_merge = (startTape + NUM_OF_TAPES - 1) % NUM_OF_TAPES;
         for(int i = startTape; i < startTape + NUM_OF_TAPES - 1; ++i) {
             int selected_tape = i % NUM_OF_TAPES;
