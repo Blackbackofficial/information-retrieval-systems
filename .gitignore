@@ -15,7 +15,7 @@
 # vendor/
 
 .idea/
-.cmake-build-debug/
+cmake-build-debug/
 *.cmake
 CMakeCache.txt
 main
@@ -24,3 +24,7 @@ CMakeFiles/
 *.bin
 *.c
 *.o
+tape1
+tape2
+tape3
+output.txt

@@ -1,12 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <filesystem>
+#include "polyphase_sort/PolyphaseSort.h"
 
 using namespace std;
 
 static int NUM_OF_TAPES = 4;
+const int LOGGER_LEVEL = 1;
 
-// MergeSort
+/// MergeSort
 void merge(int array[], int const left, int const mid, int const right) {
     auto const subArrayOne = mid - left + 1;
     auto const subArrayTwo = right - mid;
@@ -67,12 +70,12 @@ void printArray(int A[], int size) {
 }
 
 
-// Oscillated Sorting
-class Tape {
+/// Oscillated Sorting
+class TapeMerge {
 public:
     vector<vector<int>> vData;
 
-    Tape() = default;
+    TapeMerge() = default;
 
     void SetNewData(int data) {
         vector<int> new_data { data };
@@ -105,7 +108,7 @@ public:
         vData.push_back(new_vector);
     }
 
-    friend ostream& operator<< (ostream& out,const Tape& tape) {
+    friend ostream& operator<< (ostream& out,const TapeMerge& tape) {
         for(const auto & i : tape.vData) {
             for(int j : i) {
                 cout << j << " " << endl;
@@ -117,7 +120,7 @@ public:
     }
 };
 
-void PrintTapes(vector<Tape> tapes) {
+void PrintTapes(vector<TapeMerge> tapes) {
     for(int i=0; i< tapes.size(); ++i) {
         cout << "TAPE " << i << endl;
         cout << tapes[i];
@@ -159,7 +162,7 @@ int main() {
 
 
     cout << "\n\n------------ Oscillated Sorting (MergeSort) ------------ (count: 20)\n";
-    vector<Tape> tapes;
+    vector<TapeMerge> tapes;
 
     vector<int> data;
 
@@ -199,7 +202,7 @@ int main() {
     }
 
     //final merge
-    if(count_if(tapes.begin(),tapes.end(), [] (const Tape& tape) { return !tape.vData.empty(); }) > 1) {
+    if(count_if(tapes.begin(),tapes.end(), [] (const TapeMerge& tape) { return !tape.vData.empty(); }) > 1) {
         int tape_to_merge = (startTape + NUM_OF_TAPES - 1) % NUM_OF_TAPES;
         for(int i = startTape; i < startTape + NUM_OF_TAPES - 1; ++i) {
             int selected_tape = i % NUM_OF_TAPES;
@@ -210,6 +213,35 @@ int main() {
     }
     cout << "AFTER SORTING (TAPES STATE): " << endl;
     PrintTapes(tapes);
+
+
+    cout << "\n\n------------ Polyphase Sorting (MergeSort) ------------ \n";
+    // Init
+    Logger log("polyphase-polyphase_sort", LOGGER_LEVEL);
+    const char *in_filepath, *out_filepath;
+    int number_of_records, block_size;
+
+
+    in_filepath = "/Users/iva.chernov/GolandProjects/information-retrieval-systems/internal/lab2/polyphase_sort/examples/input_1.txt";
+    out_filepath = "/Users/iva.chernov/GolandProjects/information-retrieval-systems/internal/lab2/output.txt";
+    number_of_records = 3;
+    block_size = 60;
+
+    // Print content of file
+    log.print_file_debug(in_filepath);
+
+    // Sort file
+    auto ps = new PolyphaseSort(in_filepath, out_filepath, block_size, log);
+    ps->sort();
+    delete ps;
+
+    // Print information after polyphase_sort
+    log.print_file_debug(out_filepath);
+    log.print_line();
+    log.print_phase_number();
+    log.print_theoretic_phase_number(number_of_records);
+    log.print_inout_number();
+    log.print_theoretic_inout_number(number_of_records, std::filesystem::file_size(in_filepath), block_size);
 
     return 0;
 }
