@@ -20,4 +20,10 @@ make -C ./internal/lab2/Makefile
 ./internal/lab2/main
 ```
 
+### Generate test files
+input - input path,<br> output - sorted result path,<br> records - number to generate and calc,<br> block - size of buffer
+```
+python3 internal/lab2/utils/generate_input.py --output test.txt --records 1000
+```
+
 *made in C++ due to the peculiarities of the language (I just wanted to make my life difficult.)
