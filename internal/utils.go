@@ -2,8 +2,8 @@ package internal
 
 import "math/rand"
 
-var MIN = -50
-var MAX = 50
+var MIN = -10000
+var MAX = 10000
 
 func Reverse(arr []int) []int {
 	for i, j := 0, len(arr)-1; i < j; i, j = i+1, j-1 {
@@ -18,10 +18,4 @@ func RandMass(count int) []int {
 		arr = append(arr, rand.Intn(MAX-MIN)+MIN)
 	}
 	return arr
-}
-
-func Swap(ar []int, i, j int) {
-	tmp := ar[i]
-	ar[i] = ar[j]
-	ar[j] = tmp
 }
